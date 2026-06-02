@@ -1,5 +1,7 @@
 # Java Expert Programming Tutorial Guide
 
+**Written by Brian McCarthy**
+
 This repository is a hands-on Java programming guide with Java source examples, interview prep notes, section folders, ZIP-based course/source archives, and Java 8 study material.
 
 ## Table of Contents
@@ -9,7 +11,8 @@ This repository is a hands-on Java programming guide with Java source examples, 
 - [Section Folder ZIP Notes](#section-folder-zip-notes)
 - [How to Use This Repository](#how-to-use-this-repository)
 - [Java Programming Tutorial Guide](#java-programming-tutorial-guide)
-- [Code Samples](#code-samples)
+- [Java Example Files and Code Samples](#java-example-files-and-code-samples)
+- [Course Section Code Samples S04-S21](#course-section-code-samples-s04-s21)
 - [Java Example Files and Explanations](#java-example-files-and-explanations)
 - [Interview Questions and PDF](#interview-questions-and-pdf)
 - [PDF Text Alternative Notes](#pdf-text-alternative-notes)
@@ -70,15 +73,12 @@ Java-Expert-Programming-Guide/
 
 ## Section Folder ZIP Notes
 
-The project contains section folders whose names begin with `s01`, `s02`, `s03`, and continue through the later course sections. If those folders contain ZIP archives, extract each ZIP locally and commit the extracted `.java` files back into the matching section folder so they can be viewed directly in GitHub without downloading and unzipping archives.
-
-Recommended local extraction workflow:
+The project contains section folders whose names begin with `s01`, `s02`, `s03`, and continue through later course sections. If those folders contain ZIP archives, extract each ZIP locally and commit the extracted `.java` files back into the matching section folder so they can be viewed directly in GitHub without downloading and unzipping archives.
 
 ```bash
 git clone https://github.com/BrianGator/Java-Expert-Programming-Guide.git
 cd Java-Expert-Programming-Guide
 
-# macOS/Linux/Git Bash example: extract ZIP files inside section folders
 for dir in s{01..21}*; do
   if [ -d "$dir" ]; then
     find "$dir" -name "*.zip" -print0 | while IFS= read -r -d '' zipfile; do
@@ -89,13 +89,12 @@ for dir in s{01..21}*; do
   fi
 done
 
-git status
 git add .
 git commit -m "Extract Java section source files"
 git push
 ```
 
-PowerShell extraction workflow:
+PowerShell:
 
 ```powershell
 Get-ChildItem -Directory -Filter "s*" | Where-Object { $_.Name -match '^s(0[1-9]|1[0-9]|2[0-1])' } | ForEach-Object {
@@ -126,127 +125,22 @@ Some files declare packages such as `com.in28minutes.java.flow`, so an IDE impor
 
 ## Java Programming Tutorial Guide
 
-### 1. Classes and Objects
+- **Variables:** store values in memory using primitive types, reference types, static fields, instance fields, and local variables.
+- **Operators:** perform arithmetic, comparison, logical, assignment, increment, decrement, and bitwise operations.
+- **Conditions:** branch program execution with `if`, `else if`, `else`, and `switch`.
+- **Arrays:** store fixed-size collections using indexed access.
+- **Loops:** repeat logic with `for`, enhanced `for`, `while`, and `do-while`.
+- **OOP:** organize code with classes, objects, encapsulation, inheritance, polymorphism, abstraction, and interfaces.
+- **Lambdas:** use Java 8 functional syntax to simplify functional-interface implementations.
+- **Generics:** enforce compile-time type safety for classes, methods, and collections.
+- **Error Handling:** manage failures with `try`, `catch`, `finally`, and custom exceptions.
+- **Spring Boot:** build web APIs, secure applications, render Thymeleaf views, and apply AOP cross-cutting concerns.
 
-A class is a blueprint. An object is an instance of a class. Fields store state and methods define behavior.
+## Java Example Files and Code Samples
 
-Related files:
+### Arrays — `ArrayExamples.java`
 
-- [Java-Example-Files/basics/Actor.java](Java-Example-Files/basics/Actor.java)
-- [Java-Example-Files/basics/Cricketer.java](Java-Example-Files/basics/Cricketer.java)
-- [Java-Interview-Questions-And-Answers/basics-class-object.md](Java-Interview-Questions-And-Answers/basics-class-object.md)
-
-### 2. Variables, Scope, and Parameters
-
-Java variables can be local variables, instance variables, or static variables. Scope controls where each variable can be accessed.
-
-Related files:
-
-- [Java-Example-Files/variables/scope/VariablesExample.java](Java-Example-Files/variables/scope/VariablesExample.java)
-- [Java-Example-Files/variables/StaticAndMemberVariables.java](Java-Example-Files/variables/StaticAndMemberVariables.java)
-- [Java-Example-Files/variables/PassingVariablesToMethods.java](Java-Example-Files/variables/PassingVariablesToMethods.java)
-
-### 3. Flow Control
-
-Flow control includes `for`, enhanced `for`, `while`, `do-while`, `break`, and `continue`.
-
-Related files:
-
-- [Java-Example-Files/flow/ForLoopExample.java](Java-Example-Files/flow/ForLoopExample.java)
-- [Java-Example-Files/flow/WhileLoopExamples.java](Java-Example-Files/flow/WhileLoopExamples.java)
-- [Java-Example-Files/flow/DoWhileLoopExamples.java](Java-Example-Files/flow/DoWhileLoopExamples.java)
-- [Java-Example-Files/flow/BreakExamples.java](Java-Example-Files/flow/BreakExamples.java)
-- [Java-Example-Files/flow/ContinueExamples.java](Java-Example-Files/flow/ContinueExamples.java)
-
-### 4. Arrays and Strings
-
-Arrays store fixed-size collections. Strings store immutable text values.
-
-Related files:
-
-- [Java-Example-Files/arrays/ArrayExamples.java](Java-Example-Files/arrays/ArrayExamples.java)
-- [Java-Example-Files/string/StringExamples.java](Java-Example-Files/string/StringExamples.java)
-
-### 5. Object-Oriented Programming
-
-OOP uses encapsulation, inheritance, polymorphism, and abstraction to structure maintainable code.
-
-Related files:
-
-- [Java-Example-Files/oops/encapsulation/EncapsulationExample.java](Java-Example-Files/oops/encapsulation/EncapsulationExample.java)
-- [Java-Example-Files/oops/inheritance/InheritanceExamples.java](Java-Example-Files/oops/inheritance/InheritanceExamples.java)
-- [Java-Example-Files/oops/interfaces/InterfaceExamples.java](Java-Example-Files/oops/interfaces/InterfaceExamples.java)
-- [Java-Interview-Questions-And-Answers/inheritance-and-polymorphism.md](Java-Interview-Questions-And-Answers/inheritance-and-polymorphism.md)
-
-### 6. Interfaces and Abstract Classes
-
-Interfaces define contracts. Abstract classes define partial base implementations.
-
-Related files:
-
-- [Java-Example-Files/oops/interfaces/Flyable.java](Java-Example-Files/oops/interfaces/Flyable.java)
-- [Java-Example-Files/oops/interfaces/Bird.java](Java-Example-Files/oops/interfaces/Bird.java)
-- [Java-Example-Files/oops/interfaces/Aeroplane.java](Java-Example-Files/oops/interfaces/Aeroplane.java)
-- [Java-Interview-Questions-And-Answers/interfaces.md](Java-Interview-Questions-And-Answers/interfaces.md)
-- [Java-Interview-Questions-And-Answers/abstract-class.md](Java-Interview-Questions-And-Answers/abstract-class.md)
-
-### 7. Generics
-
-Generics provide compile-time type safety and reduce casting.
-
-Related files:
-
-- [Java-Example-Files/generics/GenericsExamples.java](Java-Example-Files/generics/GenericsExamples.java)
-- [Java-Example-Files/generics/GenericsExamples2.java](Java-Example-Files/generics/GenericsExamples2.java)
-
-### 8. Object Methods
-
-`toString`, `equals`, and `hashCode` are inherited from `Object` and are important for debugging, comparison, maps, and sets.
-
-Related files:
-
-- [Java-Example-Files/object/ToStringExamples.java](Java-Example-Files/object/ToStringExamples.java)
-- [Java-Example-Files/object/EqualsHashCodeExamples.java](Java-Example-Files/object/EqualsHashCodeExamples.java)
-
-### 9. Threads and Synchronization
-
-Java supports concurrent work using `Thread`, `Runnable`, `start()`, and synchronization patterns.
-
-Related files:
-
-- [Java-Example-Files/threads/ThreadExamples.java](Java-Example-Files/threads/ThreadExamples.java)
-- [Java-Example-Files/threads/ThreadExampleSynchronized.java](Java-Example-Files/threads/ThreadExampleSynchronized.java)
-- [Java-Example-Files/threads/ThreadPriority.java](Java-Example-Files/threads/ThreadPriority.java)
-- [Java-Example-Files/threads/ThreadDeadlock.java](Java-Example-Files/threads/ThreadDeadlock.java)
-
-### 10. Java 8 Lambda Expressions
-
-Lambda expressions provide concise function-style syntax for functional interfaces.
-
-Related file:
-
-- [Java-Example-Files/LambdaExpressionsTest.java](Java-Example-Files/LambdaExpressionsTest.java)
-
-## Code Samples
-
-### For Loop Example
-
-```java
-for (int i = 0; i < 10; i++) {
-    System.out.print(i);
-}
-
-int[] numbers = { 1, 2, 3, 4, 5 };
-for (int number : numbers) {
-    System.out.print(number);
-}
-```
-
-Explanation: the first loop uses a counter. The second loop is an enhanced `for` loop for arrays.
-
-Source: [Java-Example-Files/flow/ForLoopExample.java](Java-Example-Files/flow/ForLoopExample.java)
-
-### Array Example
+Array declaration, indexed access, traversal, and aggregation.
 
 ```java
 int[] scores = { 95, 88, 76, 100 };
@@ -258,13 +152,16 @@ for (int score : scores) {
 
 double average = (double) total / scores.length;
 System.out.println("Average score: " + average);
+System.out.println("First score: " + scores[0]);
 ```
 
-Explanation: arrays store fixed-size values of the same type. This example loops through all scores, calculates a total, and computes an average.
+Explanation: arrays store fixed-size values of the same type. Indexes start at `0`, and enhanced `for` loops make traversal simple.
 
 Source: [Java-Example-Files/arrays/ArrayExamples.java](Java-Example-Files/arrays/ArrayExamples.java)
 
-### String Example
+### Strings — `StringExamples.java`
+
+String behavior and common operations.
 
 ```java
 String course = "Java Expert Programming";
@@ -275,103 +172,159 @@ System.out.println(course.contains("Java"));
 System.out.println(course.substring(0, 4));
 ```
 
-Explanation: Java `String` objects are immutable text values. Common operations include length checks, case conversion, searching, and substring extraction.
+Explanation: `String` objects are immutable. Methods such as `toUpperCase()` return a new string instead of changing the original.
 
 Source: [Java-Example-Files/string/StringExamples.java](Java-Example-Files/string/StringExamples.java)
 
-### Encapsulation Example
+### Flow — `ForLoopExample.java`, `WhileLoopExamples.java`, `DoWhileLoopExamples.java`, `BreakExamples.java`, `ContinueExamples.java`
+
+Loops and flow-control statements.
 
 ```java
-class BankAccount {
-    private double balance;
-
-    public void deposit(double amount) {
-        if (amount > 0) {
-            balance += amount;
-        }
+for (int i = 0; i < 5; i++) {
+    if (i == 3) {
+        continue;
     }
+    System.out.println("For loop value: " + i);
+}
 
-    public double getBalance() {
-        return balance;
+int count = 0;
+while (count < 3) {
+    System.out.println("While loop value: " + count);
+    count++;
+}
+
+do {
+    System.out.println("Do-while runs at least once");
+} while (false);
+```
+
+Explanation: `for` is useful when the iteration count is known. `while` runs while a condition is true. `do-while` runs once before checking the condition. `continue` skips one iteration, and `break` exits a loop.
+
+Sources: [flow folder](Java-Example-Files/flow)
+
+### Operators — `LogicalOperators.java`, `IncrementAndDecrementOperators.java`
+
+Boolean logic and increment/decrement behavior.
+
+```java
+int age = 25;
+boolean hasLicense = true;
+
+if (age >= 18 && hasLicense) {
+    System.out.println("Allowed to drive");
+}
+
+int counter = 0;
+System.out.println(counter++); // prints 0, then increments
+System.out.println(++counter); // increments first, then prints 2
+```
+
+Explanation: `&&` requires both conditions to be true. Post-increment uses the current value first; pre-increment increments before evaluation.
+
+Sources: [Java-Example-Files/operators](Java-Example-Files/operators)
+
+### Variables — `VariablesExample.java`, `StaticAndMemberVariables.java`, `PassingVariablesToMethods.java`
+
+Scope, static fields, instance fields, and method arguments.
+
+```java
+class Counter {
+    static int globalCount = 0;
+    int instanceCount = 0;
+
+    void increment() {
+        int localCount = 1;
+        instanceCount += localCount;
+        globalCount++;
     }
 }
 ```
 
-Explanation: encapsulation keeps fields private and exposes controlled behavior through public methods. This protects object state from invalid changes.
+Explanation: `localCount` exists only inside the method. `instanceCount` belongs to an object. `globalCount` belongs to the class.
 
-Source: [Java-Example-Files/oops/encapsulation/EncapsulationExample.java](Java-Example-Files/oops/encapsulation/EncapsulationExample.java)
+Sources: [Java-Example-Files/variables](Java-Example-Files/variables)
 
-### Inheritance Example
+### Modifiers — `DefaultAccessClass.java`, `AbstractClassExample.java`, `FinalClass.java`, `ExampleClass.java`
+
+Access modifiers and non-access modifiers.
 
 ```java
-abstract class Animal {
-    abstract String bark();
+abstract class Report {
+    abstract void generate();
 }
 
-class Dog extends Animal {
-    String bark() {
-        return "Bow Bow";
+final class PdfReport extends Report {
+    public void generate() {
+        System.out.println("Generating PDF report");
+    }
+}
+```
+
+Explanation: `abstract` classes can define incomplete behavior. `final` classes cannot be extended. Access modifiers such as `public`, `private`, and package-private control visibility.
+
+Sources: [Java-Example-Files/classmodifiers](Java-Example-Files/classmodifiers), [Java-Example-Files/membermodifiers](Java-Example-Files/membermodifiers)
+
+### OOP — `EncapsulationExample.java`, `InheritanceExamples.java`, `InterfaceExamples.java`
+
+Encapsulation, inheritance, polymorphism, abstraction, and interfaces.
+
+```java
+interface Payable {
+    double calculatePay();
+}
+
+class Employee implements Payable {
+    private double hourlyRate;
+    private int hoursWorked;
+
+    Employee(double hourlyRate, int hoursWorked) {
+        this.hourlyRate = hourlyRate;
+        this.hoursWorked = hoursWorked;
+    }
+
+    public double calculatePay() {
+        return hourlyRate * hoursWorked;
     }
 }
 
-Animal animal = new Dog();
-System.out.println(animal.bark());
+Payable worker = new Employee(40.0, 35);
+System.out.println(worker.calculatePay());
 ```
 
-Explanation: `Dog` extends `Animal` and implements the abstract behavior. The superclass reference demonstrates polymorphism.
+Explanation: the private fields demonstrate encapsulation. The interface demonstrates abstraction. The `Payable` reference pointing to `Employee` demonstrates polymorphism.
 
-Source: [Java-Example-Files/oops/inheritance/InheritanceExamples.java](Java-Example-Files/oops/inheritance/InheritanceExamples.java)
+Sources: [Java-Example-Files/oops](Java-Example-Files/oops)
 
-### Interface Example
+### Enums — `Enum.java`, `EnumAdvanced.java`, `EnumAdvanced2.java`
 
-```java
-interface Flyable {
-    void fly();
-}
-
-class Bird implements Flyable {
-    public void fly() {
-        System.out.println("Bird is flying");
-    }
-}
-
-Flyable flyer = new Bird();
-flyer.fly();
-```
-
-Explanation: an interface defines a contract. Any class that implements the interface must provide the required behavior.
-
-Source: [Java-Example-Files/oops/interfaces/Flyable.java](Java-Example-Files/oops/interfaces/Flyable.java)
-
-### Enum Example
+Basic and advanced enum usage.
 
 ```java
 enum Difficulty {
-    EASY,
-    MEDIUM,
-    HARD
+    EASY(1), MEDIUM(2), HARD(3);
+
+    private final int level;
+
+    Difficulty(int level) {
+        this.level = level;
+    }
+
+    public int getLevel() {
+        return level;
+    }
 }
 
-Difficulty level = Difficulty.MEDIUM;
-
-switch (level) {
-    case EASY:
-        System.out.println("Beginner level");
-        break;
-    case MEDIUM:
-        System.out.println("Intermediate level");
-        break;
-    case HARD:
-        System.out.println("Advanced level");
-        break;
-}
+System.out.println(Difficulty.HARD.getLevel());
 ```
 
-Explanation: enums represent a fixed set of constants. They are safer and clearer than using raw strings or magic numbers.
+Explanation: enums define a fixed set of constants. Advanced enums can include fields, constructors, and methods.
 
-Source: [Java-Example-Files/enums/Enum.java](Java-Example-Files/enums/Enum.java)
+Sources: [Java-Example-Files/enums](Java-Example-Files/enums)
 
-### Generics Example
+### Generics — `GenericsExamples.java`, `GenericsExamples2.java`
+
+Type-safe generic programming.
 
 ```java
 import java.util.ArrayList;
@@ -386,18 +339,24 @@ for (String name : names) {
 }
 ```
 
-Explanation: generics make collections type-safe. `List<String>` only accepts `String` values, which reduces runtime casting errors.
+Explanation: generics prevent invalid values from being added to a collection and remove the need for manual casting.
 
-Source: [Java-Example-Files/generics/GenericsExamples.java](Java-Example-Files/generics/GenericsExamples.java)
+Sources: [Java-Example-Files/generics](Java-Example-Files/generics)
 
-### equals and hashCode Example
+### Object Methods — `ToStringExamples.java`, `EqualsHashCodeExamples.java`
+
+`toString`, `equals`, and `hashCode`.
 
 ```java
 class User {
-    private int id;
+    private final int id;
 
     User(int id) {
         this.id = id;
+    }
+
+    public String toString() {
+        return "User{id=" + id + "}";
     }
 
     public boolean equals(Object obj) {
@@ -413,11 +372,56 @@ class User {
 }
 ```
 
-Explanation: `equals()` controls logical equality, while `hashCode()` supports hash-based collections such as `HashMap` and `HashSet`.
+Explanation: `toString()` controls readable output. `equals()` controls logical equality. `hashCode()` supports hash-based collections.
 
-Source: [Java-Example-Files/object/EqualsHashCodeExamples.java](Java-Example-Files/object/EqualsHashCodeExamples.java)
+Sources: [Java-Example-Files/object](Java-Example-Files/object)
 
-### Varargs Example
+### Files and Serialization — `ConsoleExamples.java`, `SerializationExamples.java`
+
+Console I/O and object serialization.
+
+```java
+import java.io.Serializable;
+
+class Customer implements Serializable {
+    private static final long serialVersionUID = 1L;
+    private String name;
+
+    Customer(String name) {
+        this.name = name;
+    }
+}
+```
+
+Explanation: `Serializable` marks an object as eligible for serialization. This allows object state to be written to a stream and restored later.
+
+Sources: [Java-Example-Files/files](Java-Example-Files/files), [Java-Example-Files/serialization](Java-Example-Files/serialization)
+
+### Threads — `ThreadExamples.java`, `ThreadExampleSynchronized.java`, `ThreadPriority.java`, `ThreadDeadlock.java`
+
+Thread creation, priority, synchronization, and deadlock.
+
+```java
+class SafeCounter {
+    private int count = 0;
+
+    public synchronized void increment() {
+        count++;
+    }
+
+    public int getCount() {
+        return count;
+    }
+}
+```
+
+Explanation: `synchronized` protects shared state so only one thread can execute the method at a time. This helps prevent race conditions.
+
+Sources: [Java-Example-Files/threads](Java-Example-Files/threads)
+
+### Varargs — `VariableArgumentExamples.java`
+
+Variable-length method arguments.
 
 ```java
 public static int sum(int... numbers) {
@@ -432,86 +436,342 @@ System.out.println(sum(1, 2, 3));
 System.out.println(sum(10, 20, 30, 40));
 ```
 
-Explanation: varargs allow a method to accept zero or more values of the same type using `...` syntax.
+Explanation: varargs allow a method to accept zero or more arguments of the same type.
 
 Source: [Java-Example-Files/varargs/VariableArgumentExamples.java](Java-Example-Files/varargs/VariableArgumentExamples.java)
 
-### Thread Example
+### Miscellaneous — `SameType.java`, `PrintfExamples.java`, `AssertExamples.java`, `CalendarExamples.java`
 
-```java
-class BattingStatisticsThread extends Thread {
-    public void run() {
-        System.out.println("Running Batting Statistics");
-    }
-}
-
-BattingStatisticsThread thread = new BattingStatisticsThread();
-thread.start();
-```
-
-Explanation: extending `Thread` and calling `start()` runs the `run()` method on a separate execution path.
-
-Source: [Java-Example-Files/threads/ThreadExamples.java](Java-Example-Files/threads/ThreadExamples.java)
-
-### Runnable Example
-
-```java
-Runnable task = new Runnable() {
-    public void run() {
-        System.out.println("Running task in a separate thread");
-    }
-};
-
-Thread thread = new Thread(task);
-thread.start();
-```
-
-Explanation: implementing `Runnable` separates the task from the thread object and is often more flexible than extending `Thread`.
-
-Source: [Java-Example-Files/threads/ThreadExamples.java](Java-Example-Files/threads/ThreadExamples.java)
-
-### Lambda Expression Example
-
-```java
-Runnable task = () -> System.out.println("Running with a lambda");
-Thread thread = new Thread(task);
-thread.start();
-```
-
-Explanation: Java 8 lambdas make functional-interface implementations shorter and easier to read.
-
-Source: [Java-Example-Files/LambdaExpressionsTest.java](Java-Example-Files/LambdaExpressionsTest.java)
-
-### Console Output Formatting Example
+Formatting, assertions, dates, and miscellaneous Java examples.
 
 ```java
 String name = "Brian";
 int score = 95;
-
 System.out.printf("Student: %s | Score: %d%n", name, score);
-```
 
-Explanation: `printf` formats output using placeholders such as `%s` for strings and `%d` for integers.
-
-Source: [Java-Example-Files/others/PrintfExamples.java](Java-Example-Files/others/PrintfExamples.java)
-
-### Assertion Example
-
-```java
 int age = 25;
 assert age >= 0 : "Age cannot be negative";
-System.out.println("Valid age: " + age);
 ```
 
-Explanation: assertions document assumptions and can help catch programming errors during development and testing.
+Explanation: `printf` formats output using placeholders. `assert` documents assumptions and helps catch invalid development-time states.
 
-Source: [Java-Example-Files/others/assertexample/AssertExamples.java](Java-Example-Files/others/assertexample/AssertExamples.java)
+Sources: [Java-Example-Files/others](Java-Example-Files/others)
+
+## Course Section Code Samples S04-S21
+
+### S04 - Variables
+
+```java
+int quantity = 5;
+double price = 19.99;
+String productName = "Java Book";
+boolean inStock = true;
+
+double total = quantity * price;
+System.out.println(productName + " total: $" + total);
+```
+
+Explanation: variables store typed values. Primitive variables hold simple values, while reference variables such as `String` point to objects.
+
+### S05 - Operators
+
+```java
+int a = 10;
+int b = 3;
+
+System.out.println(a + b);
+System.out.println(a - b);
+System.out.println(a * b);
+System.out.println(a / b);
+System.out.println(a % b);
+System.out.println(a > b && b > 0);
+```
+
+Explanation: arithmetic operators calculate values, comparison operators return booleans, and logical operators combine boolean expressions.
+
+### S06 - Conditions
+
+```java
+int score = 87;
+
+if (score >= 90) {
+    System.out.println("A");
+} else if (score >= 80) {
+    System.out.println("B");
+} else {
+    System.out.println("Needs improvement");
+}
+```
+
+Explanation: conditional statements execute different blocks depending on boolean expressions.
+
+### S07 - Arrays
+
+```java
+String[] skills = { "Java", "Spring Boot", "SQL" };
+
+for (int i = 0; i < skills.length; i++) {
+    System.out.println((i + 1) + ". " + skills[i]);
+}
+```
+
+Explanation: arrays use zero-based indexes and expose their fixed length through the `length` property.
+
+### S08 - Loops
+
+```java
+int number = 1;
+
+while (number <= 5) {
+    System.out.println(number);
+    number++;
+}
+```
+
+Explanation: a `while` loop repeats while its condition remains true. Remember to update loop state to avoid infinite loops.
+
+### S09 - OOP
+
+```java
+class Task {
+    private String title;
+    private boolean complete;
+
+    Task(String title) {
+        this.title = title;
+    }
+
+    void markComplete() {
+        complete = true;
+    }
+
+    boolean isComplete() {
+        return complete;
+    }
+}
+```
+
+Explanation: this class encapsulates task state and exposes behavior through methods.
+
+### S10 - Lambda Expressions Java 8
+
+```java
+import java.util.Arrays;
+import java.util.List;
+
+List<String> names = Arrays.asList("Brian", "Java", "Spring");
+names.forEach(name -> System.out.println(name.toUpperCase()));
+```
+
+Explanation: lambda expressions provide concise implementations of functional interfaces and are commonly used with collections.
+
+### S11 - Generic Types
+
+```java
+class Box<T> {
+    private T value;
+
+    void setValue(T value) {
+        this.value = value;
+    }
+
+    T getValue() {
+        return value;
+    }
+}
+
+Box<String> box = new Box<>();
+box.setValue("Java Generics");
+System.out.println(box.getValue());
+```
+
+Explanation: `T` is a type parameter. The compiler enforces the type when the class is used.
+
+### S12 - Error Handling
+
+```java
+try {
+    int result = 10 / 0;
+    System.out.println(result);
+} catch (ArithmeticException ex) {
+    System.out.println("Cannot divide by zero: " + ex.getMessage());
+} finally {
+    System.out.println("Cleanup always runs");
+}
+```
+
+Explanation: `try` contains risky code, `catch` handles the exception, and `finally` runs whether an exception occurs or not.
+
+### S13 - Documentation
+
+```java
+/**
+ * Calculates the final price after applying a discount.
+ *
+ * @param price original item price
+ * @param discount discount amount
+ * @return final price after discount
+ */
+public double calculateFinalPrice(double price, double discount) {
+    return price - discount;
+}
+```
+
+Explanation: Javadoc comments document classes and methods so developers can generate API documentation.
+
+### S14 - Spring Boot Init
+
+```java
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class JavaGuideApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(JavaGuideApplication.class, args);
+    }
+}
+```
+
+Explanation: `@SpringBootApplication` enables component scanning, auto-configuration, and configuration support for a Spring Boot app.
+
+### S15 - Spring Boot Basics
+
+```java
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class HelloController {
+    @GetMapping("/hello")
+    public String hello() {
+        return "Hello from Spring Boot";
+    }
+}
+```
+
+Explanation: `@RestController` exposes web endpoints, and `@GetMapping` maps HTTP GET requests to a Java method.
+
+### S16 - Spring Boot Security
+
+```java
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Bean
+SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    return http
+        .authorizeHttpRequests(auth -> auth
+            .requestMatchers("/public/**").permitAll()
+            .anyRequest().authenticated())
+        .formLogin(form -> form.permitAll())
+        .build();
+}
+```
+
+Explanation: Spring Security controls which routes are public and which require authentication.
+
+### S17 - Spring Boot Thymeleaf
+
+```java
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class PageController {
+    @GetMapping("/dashboard")
+    public String dashboard(Model model) {
+        model.addAttribute("title", "Java Dashboard");
+        return "dashboard";
+    }
+}
+```
+
+Explanation: a Thymeleaf controller returns a template name and passes data to the page through the `Model`.
+
+### S18 - Spring Boot Task Manager Application API
+
+```java
+import org.springframework.web.bind.annotation.*;
+import java.util.*;
+
+@RestController
+@RequestMapping("/api/tasks")
+public class TaskController {
+    private final List<String> tasks = new ArrayList<>();
+
+    @GetMapping
+    public List<String> getTasks() {
+        return tasks;
+    }
+
+    @PostMapping
+    public String addTask(@RequestBody String task) {
+        tasks.add(task);
+        return task;
+    }
+}
+```
+
+Explanation: this REST controller exposes a basic task API with GET and POST endpoints.
+
+### S19 - Spring Boot AOP
+
+```java
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.springframework.stereotype.Component;
+
+@Aspect
+@Component
+public class LoggingAspect {
+    @Before("execution(* com.example..*(..))")
+    public void logBeforeMethod() {
+        System.out.println("Method is about to execute");
+    }
+}
+```
+
+Explanation: AOP separates cross-cutting concerns such as logging from core business logic.
+
+### S20 - Summary
+
+```java
+public class JavaSummary {
+    public static void main(String[] args) {
+        String topic = "Java";
+        int examplesCompleted = 21;
+        boolean readyForInterview = examplesCompleted >= 20;
+
+        System.out.println(topic + " examples completed: " + examplesCompleted);
+        System.out.println("Ready for interview review: " + readyForInterview);
+    }
+}
+```
+
+Explanation: this summary-style example combines variables, operators, strings, booleans, and output.
+
+### S21 - Bitwise Operators
+
+```java
+int a = 5;  // binary 0101
+int b = 3;  // binary 0011
+
+System.out.println(a & b);  // 0001 = 1
+System.out.println(a | b);  // 0111 = 7
+System.out.println(a ^ b);  // 0110 = 6
+System.out.println(a << 1); // 1010 = 10
+System.out.println(a >> 1); // 0010 = 2
+```
+
+Explanation: bitwise operators work at the binary bit level. They are useful for flags, masks, low-level logic, and performance-sensitive operations.
 
 ## Java Example Files and Explanations
 
 | Area | Files | Explanation |
 |---|---|---|
-| Basics | [Actor.java](Java-Example-Files/basics/Actor.java), [Cricketer.java](Java-Example-Files/basics/Cricketer.java) | Class and object basics. |
 | Arrays | [ArrayExamples.java](Java-Example-Files/arrays/ArrayExamples.java) | Array declaration, access, and traversal. |
 | Strings | [StringExamples.java](Java-Example-Files/string/StringExamples.java) | String behavior and common operations. |
 | Flow | [ForLoopExample.java](Java-Example-Files/flow/ForLoopExample.java), [WhileLoopExamples.java](Java-Example-Files/flow/WhileLoopExamples.java), [DoWhileLoopExamples.java](Java-Example-Files/flow/DoWhileLoopExamples.java), [BreakExamples.java](Java-Example-Files/flow/BreakExamples.java), [ContinueExamples.java](Java-Example-Files/flow/ContinueExamples.java) | Loops and flow-control statements. |
