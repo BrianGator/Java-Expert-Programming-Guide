@@ -11,9 +11,7 @@ This repository is a hands-on Java programming guide with Java source examples, 
 - [Java Programming Tutorial Guide](#java-programming-tutorial-guide)
 - [Course Section Code Samples S04-S21](#course-section-code-samples-s04-s21)
 - [Java Example Files and Explanations](#java-example-files-and-explanations)
-- [Java Interview Questions and Answers Code Samples](#java-interview-questions-and-answers-code-samples)
 - [Interview Questions and PDF](#interview-questions-and-pdf)
-- [PDF Text Alternative Notes](#pdf-text-alternative-notes)
 
 ## Project File Structure
 
@@ -71,16 +69,16 @@ Java-Expert-Programming-Guide/
 
 ## Java Programming Tutorial Guide
 
-- **Variables:** store values in memory using primitive types, reference types, static fields, instance fields, and local variables.
-- **Operators:** perform arithmetic, comparison, logical, assignment, increment, decrement, and bitwise operations.
-- **Conditions:** branch program execution with `if`, `else if`, `else`, and `switch`.
-- **Arrays:** store fixed-size collections using indexed access.
-- **Loops:** repeat logic with `for`, enhanced `for`, `while`, and `do-while`.
-- **OOP:** organize code with classes, objects, encapsulation, inheritance, polymorphism, abstraction, and interfaces.
-- **Lambdas:** use Java 8 functional syntax to simplify functional-interface implementations.
-- **Generics:** enforce compile-time type safety for classes, methods, and collections.
-- **Error Handling:** manage failures with `try`, `catch`, `finally`, and custom exceptions.
-- **Spring Boot:** build web APIs, secure applications, render Thymeleaf views, and apply AOP cross-cutting concerns.
+- **Variables:** store typed values in memory. Java separates primitive values such as `int`, `double`, and `boolean` from reference values such as `String`, arrays, and objects.
+- **Operators:** transform or compare values. Arithmetic operators produce numeric results, comparison operators produce booleans, and logical operators combine boolean expressions.
+- **Conditions:** choose which code path runs. `if`, `else if`, `else`, and `switch` make program behavior data-dependent.
+- **Arrays:** store fixed-size indexed collections. Arrays are zero-based, so the first element is at index `0`.
+- **Loops:** repeat work. `for` works well when the number of iterations is known; `while` works well when repetition depends on a condition.
+- **OOP:** organizes software around classes, objects, encapsulation, inheritance, polymorphism, abstraction, and interfaces.
+- **Lambdas:** Java 8 lambda expressions provide concise implementations of functional interfaces.
+- **Generics:** enforce compile-time type safety for reusable classes, methods, and collections.
+- **Error Handling:** separates normal logic from failure logic using `try`, `catch`, `finally`, and exception types.
+- **Spring Boot:** simplifies Java web/API development through auto-configuration, dependency injection, controllers, security, templates, and AOP.
 
 ## Course Section Code Samples S04-S21
 
@@ -94,9 +92,19 @@ boolean inStock = true;
 
 double total = quantity * price;
 System.out.println(productName + " total: $" + total);
+System.out.println("Available: " + inStock);
 ```
 
-Explanation: variables store typed values. Primitive variables hold simple values, while reference variables such as `String` point to objects.
+**Detailed explanation:** `quantity` is an integer, `price` is a decimal value, `productName` is a reference to a `String` object, and `inStock` is a boolean flag. Java is statically typed, so each variable has a declared type and the compiler checks whether assignments and operations are valid.
+
+**Expected output:**
+
+```text
+Java Book total: $99.94999999999999
+Available: true
+```
+
+**Expected result:** The program calculates `5 * 19.99`. The long decimal is normal floating-point behavior with `double`.
 
 ### S05 - Operators
 
@@ -112,7 +120,20 @@ System.out.println(a % b);
 System.out.println(a > b && b > 0);
 ```
 
-Explanation: arithmetic operators calculate values, comparison operators return booleans, and logical operators combine boolean expressions.
+**Detailed explanation:** Arithmetic operators perform numeric calculations. Integer division with `/` discards the decimal part. The modulo operator `%` returns the remainder. The logical `&&` operator returns `true` only when both expressions are true.
+
+**Expected output:**
+
+```text
+13
+7
+30
+3
+1
+true
+```
+
+**Expected result:** The code demonstrates arithmetic, remainder, comparison, and logical evaluation.
 
 ### S06 - Conditions
 
@@ -128,7 +149,15 @@ if (score >= 90) {
 }
 ```
 
-Explanation: conditional statements execute different blocks depending on boolean expressions.
+**Detailed explanation:** Java evaluates the `if` conditions from top to bottom. Since `87 >= 90` is false but `87 >= 80` is true, the second branch runs and the remaining `else` block is skipped.
+
+**Expected output:**
+
+```text
+B
+```
+
+**Expected result:** The score maps to the `B` category.
 
 ### S07 - Arrays
 
@@ -140,7 +169,17 @@ for (int i = 0; i < skills.length; i++) {
 }
 ```
 
-Explanation: arrays use zero-based indexes and expose their fixed length through the `length` property.
+**Detailed explanation:** An array stores multiple values of the same type. `skills.length` gives the number of elements. `skills[i]` accesses the current element by index.
+
+**Expected output:**
+
+```text
+1. Java
+2. Spring Boot
+3. SQL
+```
+
+**Expected result:** Each skill is printed in order with a human-friendly number starting at `1`.
 
 ### S08 - Loops
 
@@ -153,7 +192,19 @@ while (number <= 5) {
 }
 ```
 
-Explanation: a `while` loop repeats while its condition remains true. Update loop state to avoid infinite loops.
+**Detailed explanation:** A `while` loop checks the condition before each iteration. The `number++` statement is critical because it moves the loop toward completion.
+
+**Expected output:**
+
+```text
+1
+2
+3
+4
+5
+```
+
+**Expected result:** The loop prints numbers `1` through `5` and then stops when `number` becomes `6`.
 
 ### S09 - OOP
 
@@ -174,9 +225,23 @@ class Task {
         return complete;
     }
 }
+
+Task task = new Task("Study Java");
+System.out.println(task.isComplete());
+task.markComplete();
+System.out.println(task.isComplete());
 ```
 
-Explanation: this class encapsulates task state and exposes behavior through methods.
+**Detailed explanation:** The class encapsulates state through private fields. The constructor initializes a new object. Methods expose behavior without letting outside code directly modify private fields.
+
+**Expected output:**
+
+```text
+false
+true
+```
+
+**Expected result:** The task begins incomplete and becomes complete after `markComplete()` runs.
 
 ### S10 - Lambda Expressions Java 8
 
@@ -188,7 +253,17 @@ List<String> names = Arrays.asList("Brian", "Java", "Spring");
 names.forEach(name -> System.out.println(name.toUpperCase()));
 ```
 
-Explanation: lambda expressions provide concise implementations of functional interfaces and are commonly used with collections.
+**Detailed explanation:** `forEach` expects a functional interface. The lambda `name -> ...` supplies the behavior to run for each element.
+
+**Expected output:**
+
+```text
+BRIAN
+JAVA
+SPRING
+```
+
+**Expected result:** Each string is converted to uppercase and printed.
 
 ### S11 - Generic Types
 
@@ -210,7 +285,15 @@ box.setValue("Java Generics");
 System.out.println(box.getValue());
 ```
 
-Explanation: `T` is a type parameter. The compiler enforces the type when the class is used.
+**Detailed explanation:** `T` is a placeholder type. `Box<String>` means this instance only accepts and returns `String` values.
+
+**Expected output:**
+
+```text
+Java Generics
+```
+
+**Expected result:** The compiler prevents putting non-String values into `Box<String>`.
 
 ### S12 - Error Handling
 
@@ -225,7 +308,16 @@ try {
 }
 ```
 
-Explanation: `try` contains risky code, `catch` handles the exception, and `finally` runs whether an exception occurs or not.
+**Detailed explanation:** Division by zero throws `ArithmeticException`. The `catch` block handles the error, and `finally` runs afterward regardless of success or failure.
+
+**Expected output:**
+
+```text
+Cannot divide by zero: / by zero
+Cleanup always runs
+```
+
+**Expected result:** The program does not crash because the exception is handled.
 
 ### S13 - Documentation
 
@@ -240,9 +332,19 @@ Explanation: `try` contains risky code, `catch` handles the exception, and `fina
 public double calculateFinalPrice(double price, double discount) {
     return price - discount;
 }
+
+System.out.println(calculateFinalPrice(100.00, 15.00));
 ```
 
-Explanation: Javadoc comments document classes and methods so developers can generate API documentation.
+**Detailed explanation:** Javadoc comments describe method behavior, parameters, and return values. Tools can generate HTML documentation from these comments.
+
+**Expected output:**
+
+```text
+85.0
+```
+
+**Expected result:** The method returns the discounted price.
 
 ### S14 - Spring Boot Init
 
@@ -258,7 +360,13 @@ public class JavaGuideApplication {
 }
 ```
 
-Explanation: `@SpringBootApplication` enables component scanning, auto-configuration, and configuration support.
+**Detailed explanation:** `@SpringBootApplication` combines configuration, auto-configuration, and component scanning. `SpringApplication.run` starts the embedded application context and web server when web dependencies are present.
+
+**Expected result:** Running the application starts Spring Boot. Console logs normally show that the application context started successfully.
+
+```text
+Started JavaGuideApplication in ... seconds
+```
 
 ### S15 - Spring Boot Basics
 
@@ -275,7 +383,15 @@ public class HelloController {
 }
 ```
 
-Explanation: `@RestController` exposes web endpoints, and `@GetMapping` maps HTTP GET requests to a Java method.
+**Detailed explanation:** `@RestController` tells Spring to return method values directly in the HTTP response body. `@GetMapping("/hello")` maps a GET request to the `hello()` method.
+
+**Expected HTTP result:**
+
+```text
+GET /hello
+200 OK
+Hello from Spring Boot
+```
 
 ### S16 - Spring Boot Security
 
@@ -295,7 +411,14 @@ SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 }
 ```
 
-Explanation: Spring Security controls which routes are public and which require authentication.
+**Detailed explanation:** Requests under `/public/**` are allowed without login. All other routes require authentication. Form login is enabled for unauthenticated users.
+
+**Expected result:**
+
+```text
+GET /public/info -> allowed
+GET /dashboard -> redirects to login or returns 401/302 depending on configuration
+```
 
 ### S17 - Spring Boot Thymeleaf
 
@@ -314,7 +437,13 @@ public class PageController {
 }
 ```
 
-Explanation: a Thymeleaf controller returns a template name and passes data to the page through the `Model`.
+**Detailed explanation:** A `@Controller` returns a view name instead of raw data. The `Model` passes values into a Thymeleaf template named `dashboard.html`.
+
+**Expected result:**
+
+```text
+GET /dashboard -> renders dashboard.html with title = Java Dashboard
+```
 
 ### S18 - Spring Boot Task Manager Application API
 
@@ -340,7 +469,17 @@ public class TaskController {
 }
 ```
 
-Explanation: this REST controller exposes a basic task API with GET and POST endpoints.
+**Detailed explanation:** The controller exposes REST endpoints. `GET /api/tasks` returns the current list, while `POST /api/tasks` adds a task to the in-memory list.
+
+**Expected HTTP result:**
+
+```text
+POST /api/tasks body: "Study Java"
+Response: Study Java
+
+GET /api/tasks
+Response: ["Study Java"]
+```
 
 ### S19 - Spring Boot AOP
 
@@ -359,7 +498,15 @@ public class LoggingAspect {
 }
 ```
 
-Explanation: AOP separates cross-cutting concerns such as logging from core business logic.
+**Detailed explanation:** AOP applies logic across multiple methods without placing that logic inside every method. This is useful for logging, timing, auditing, and security checks.
+
+**Expected output/result:**
+
+```text
+Method is about to execute
+```
+
+The message appears before matching methods execute.
 
 ### S20 - Summary
 
@@ -376,7 +523,14 @@ public class JavaSummary {
 }
 ```
 
-Explanation: this summary-style example combines variables, operators, strings, booleans, and output.
+**Detailed explanation:** This combines strings, integers, boolean expressions, comparison operators, and console output in one small program.
+
+**Expected output:**
+
+```text
+Java examples completed: 21
+Ready for interview review: true
+```
 
 ### S21 - Bitwise Operators
 
@@ -391,11 +545,21 @@ System.out.println(a << 1); // 1010 = 10
 System.out.println(a >> 1); // 0010 = 2
 ```
 
-Explanation: bitwise operators work at the binary bit level. They are useful for flags, masks, low-level logic, and performance-sensitive operations.
+**Detailed explanation:** Bitwise operators compare or shift individual binary bits. `&` keeps bits that are on in both numbers, `|` keeps bits that are on in either number, `^` keeps bits that differ, and shifts move bits left or right.
+
+**Expected output:**
+
+```text
+1
+7
+6
+10
+2
+```
 
 ## Java Example Files and Explanations
 
-The course section samples above already cover the core programming concepts from S04-S21. This section focuses on additional Java example topics from [Java-Example-Files](Java-Example-Files) that are useful for perusal without repeating the same concept coverage.
+The course section samples above cover the core programming concepts from S04-S21. This section focuses on additional Java example topics from [Java-Example-Files](Java-Example-Files) that are useful for perusal without repeating the same concept coverage.
 
 ### Console Formatting — `PrintfExamples.java`
 
@@ -407,9 +571,13 @@ double completion = 98.75;
 System.out.printf("Student: %s | Score: %d | Completion: %.2f%%%n", name, score, completion);
 ```
 
-Explanation: `printf` uses format specifiers such as `%s`, `%d`, and `%.2f` to create structured console output.
+**Detailed explanation:** `printf` uses placeholders to format output. `%s` formats a string, `%d` formats an integer, `%.2f` formats a decimal with two digits after the decimal point, and `%%` prints a literal percent sign.
 
-Source: [Java-Example-Files/others/PrintfExamples.java](Java-Example-Files/others/PrintfExamples.java)
+**Expected output:**
+
+```text
+Student: Brian | Score: 95 | Completion: 98.75%
+```
 
 ### Assertions — `AssertExamples.java`
 
@@ -419,9 +587,19 @@ assert age >= 0 : "Age cannot be negative";
 System.out.println("Valid age: " + age);
 ```
 
-Explanation: assertions document assumptions and help catch invalid program states during development.
+**Detailed explanation:** Assertions are development-time checks. They are disabled by default unless the JVM runs with `-ea`. When enabled, a failed assertion throws `AssertionError`.
 
-Source: [Java-Example-Files/others/assertexample/AssertExamples.java](Java-Example-Files/others/assertexample/AssertExamples.java)
+**Expected output when assertion passes:**
+
+```text
+Valid age: 25
+```
+
+**Expected result if `age = -1` and assertions are enabled:**
+
+```text
+Exception in thread "main" java.lang.AssertionError: Age cannot be negative
+```
 
 ### Date and Calendar — `CalendarExamples.java`
 
@@ -436,9 +614,17 @@ System.out.println(calendar.get(Calendar.MONTH));
 System.out.println(calendar.get(Calendar.DAY_OF_MONTH));
 ```
 
-Explanation: `Calendar` represents date/time fields. Months are zero-based, so `Calendar.JUNE` is safer than hard-coded numbers.
+**Detailed explanation:** `Calendar` stores date/time fields. Months are zero-based internally, so using constants such as `Calendar.JUNE` is clearer than hard-coding `5`.
 
-Source: [Java-Example-Files/others/date/CalendarExamples.java](Java-Example-Files/others/date/CalendarExamples.java)
+**Expected output:**
+
+```text
+2026
+5
+2
+```
+
+**Expected result:** The month prints as `5` because `Calendar.JUNE` maps to the zero-based month value for June.
 
 ### Same-Type Comparison — `SameType.java`
 
@@ -451,9 +637,13 @@ if (value instanceof String) {
 }
 ```
 
-Explanation: `instanceof` checks the runtime type before casting, reducing the risk of `ClassCastException`.
+**Detailed explanation:** `instanceof` checks the runtime type before casting. This pattern prevents invalid casts and makes type-specific behavior safer.
 
-Source: [Java-Example-Files/others/SameType.java](Java-Example-Files/others/SameType.java)
+**Expected output:**
+
+```text
+JAVA
+```
 
 ### Console Input / Output — `ConsoleExamples.java`
 
@@ -466,9 +656,14 @@ String name = scanner.nextLine();
 System.out.println("Hello, " + name);
 ```
 
-Explanation: `Scanner` reads console input, while `System.out.print` and `System.out.println` write output.
+**Detailed explanation:** `Scanner` reads input from the console. `nextLine()` reads a full line. This is useful for small command-line programs.
 
-Source: [Java-Example-Files/files/ConsoleExamples.java](Java-Example-Files/files/ConsoleExamples.java)
+**Expected interactive result:**
+
+```text
+Enter your name: Brian
+Hello, Brian
+```
 
 ### Serialization — `SerializationExamples.java`
 
@@ -485,9 +680,9 @@ class Customer implements Serializable {
 }
 ```
 
-Explanation: implementing `Serializable` marks an object as eligible to be written to and restored from an object stream.
+**Detailed explanation:** `Serializable` marks a class as eligible for object serialization. `serialVersionUID` helps Java verify class compatibility when deserializing saved objects.
 
-Source: [Java-Example-Files/serialization/SerializationExamples.java](Java-Example-Files/serialization/SerializationExamples.java)
+**Expected result:** Objects of `Customer` can be written to an `ObjectOutputStream` and restored with an `ObjectInputStream` if all fields are serializable.
 
 ### Thread Deadlock — `ThreadDeadlock.java`
 
@@ -504,13 +699,25 @@ Thread first = new Thread(() -> {
 });
 ```
 
-Explanation: deadlocks can happen when threads acquire shared locks in different orders. The prevention strategy is to acquire locks consistently.
+**Detailed explanation:** A deadlock can occur when two threads hold different locks and each waits for the other lock. The safest prevention strategy is to acquire locks in a consistent order everywhere.
 
-Source: [Java-Example-Files/threads/ThreadDeadlock.java](Java-Example-Files/threads/ThreadDeadlock.java)
+**Expected result:** This simplified snippet prints normally if no competing thread takes the locks in the reverse order. A full deadlock example would hang instead of completing.
 
-## Java Interview Questions and Answers Code Samples
+```text
+First thread acquired both locks
+```
+
+## Interview Questions and PDF
+
+PDF reference:
+
+- [Java-Interview-Questions-And-Answers PDF - Java 8](_Java-Interview-Questions-And-Answers-(Java8).pdf)
 
 ### `basics-class-object.md` — Class and Object Basics
+
+**Q1: What is the difference between a class and an object?**
+
+**Answer:** A class is a blueprint. An object is a runtime instance created from that blueprint.
 
 ```java
 class Book {
@@ -529,9 +736,33 @@ Book book = new Book("Java 8 Guide");
 book.printTitle();
 ```
 
-Explanation: `Book` is a class. `book` is an object. The constructor initializes state, and the method defines behavior.
+**Expected output:**
+
+```text
+Java 8 Guide
+```
+
+**Q2: What is object state and object behavior?**
+
+**Answer:** State is data stored in fields. Behavior is logic exposed through methods.
+
+```java
+class LightSwitch {
+    boolean on;
+
+    void turnOn() {
+        on = true;
+    }
+}
+```
+
+**Expected result:** Calling `turnOn()` changes the object's state from `false` to `true`.
 
 ### `abstract-class.md` — Abstract Class
+
+**Q1: What is an abstract class?**
+
+**Answer:** An abstract class is a base class that can define shared behavior and require subclasses to implement missing behavior.
 
 ```java
 abstract class Shape {
@@ -549,23 +780,69 @@ class Circle extends Shape {
         return Math.PI * radius * radius;
     }
 }
+
+System.out.println(new Circle(2).area());
 ```
 
-Explanation: abstract classes cannot be instantiated directly. Subclasses must implement abstract methods.
+**Expected output:**
 
-### `arrays.md` — Arrays
+```text
+12.566370614359172
+```
+
+**Q2: Can an abstract class have concrete methods?**
+
+**Answer:** Yes. Abstract classes can contain both abstract and concrete methods.
 
 ```java
-int[] numbers = { 10, 20, 30 };
-
-for (int i = 0; i < numbers.length; i++) {
-    System.out.println("Index " + i + ": " + numbers[i]);
+abstract class BaseReport {
+    void printHeader() {
+        System.out.println("Report Header");
+    }
 }
 ```
 
-Explanation: arrays store fixed-size ordered values and are accessed by zero-based indexes.
+**Expected result:** Subclasses inherit `printHeader()` without needing to reimplement it.
+
+### `arrays.md` — Arrays
+
+**Q1: How do you access elements in an array?**
+
+**Answer:** Use zero-based indexes.
+
+```java
+int[] numbers = { 10, 20, 30 };
+System.out.println(numbers[0]);
+System.out.println(numbers[2]);
+```
+
+**Expected output:**
+
+```text
+10
+30
+```
+
+**Q2: What happens if an array index is invalid?**
+
+**Answer:** Java throws `ArrayIndexOutOfBoundsException`.
+
+```java
+int[] numbers = { 1, 2 };
+System.out.println(numbers[5]);
+```
+
+**Expected result:**
+
+```text
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException
+```
 
 ### `constructors.md` — Constructors
+
+**Q1: What is a constructor?**
+
+**Answer:** A constructor initializes a new object when `new` is used.
 
 ```java
 class Product {
@@ -576,33 +853,97 @@ class Product {
         this.name = name;
         this.price = price;
     }
+
+    public String toString() {
+        return name + ": " + price;
+    }
+}
+
+System.out.println(new Product("Book", 19.99));
+```
+
+**Expected output:**
+
+```text
+Book: 19.99
+```
+
+**Q2: Can constructors be overloaded?**
+
+**Answer:** Yes. A class can define multiple constructors with different parameter lists.
+
+```java
+class User {
+    User() {
+        System.out.println("Default user");
+    }
+
+    User(String name) {
+        System.out.println(name);
+    }
 }
 ```
 
-Explanation: constructors initialize new objects and can require mandatory values at creation time.
+**Expected result:** `new User()` prints `Default user`; `new User("Brian")` prints `Brian`.
 
 ### `enum.md` — Enum
 
+**Q1: Why use an enum?**
+
+**Answer:** Enums restrict values to a known, fixed set.
+
 ```java
 enum OrderStatus {
-    NEW,
-    PROCESSING,
-    SHIPPED,
-    DELIVERED
+    NEW, PROCESSING, SHIPPED, DELIVERED
 }
 
 OrderStatus status = OrderStatus.PROCESSING;
 System.out.println(status);
 ```
 
-Explanation: enums model a fixed set of valid constants, which is safer than using free-form strings.
+**Expected output:**
+
+```text
+PROCESSING
+```
+
+**Q2: Can enums have fields and methods?**
+
+**Answer:** Yes. Enums can be more than simple constants.
+
+```java
+enum Priority {
+    HIGH(3), MEDIUM(2), LOW(1);
+
+    private final int level;
+
+    Priority(int level) {
+        this.level = level;
+    }
+
+    int getLevel() {
+        return level;
+    }
+}
+
+System.out.println(Priority.HIGH.getLevel());
+```
+
+**Expected output:**
+
+```text
+3
+```
 
 ### `file-io.md` — File I/O
+
+**Q1: How do you write and read a small text file?**
+
+**Answer:** Use `Files.writeString` and `Files.readString` for simple text operations.
 
 ```java
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.List;
 
 Path path = Path.of("notes.txt");
 Files.writeString(path, "Java file example");
@@ -610,21 +951,47 @@ String content = Files.readString(path);
 System.out.println(content);
 ```
 
-Explanation: `Files` and `Path` provide modern APIs for reading and writing files.
+**Expected output:**
+
+```text
+Java file example
+```
+
+**Q2: What exception type is common with file operations?**
+
+**Answer:** Many file operations can throw `IOException` when paths are invalid, permissions fail, or disks are unavailable.
+
+**Expected result:** Production code should handle or declare checked file I/O exceptions.
 
 ### `generics.md` — Generics
+
+**Q1: What problem do generics solve?**
+
+**Answer:** Generics provide type safety and reduce casts.
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+List<String> names = new ArrayList<>();
+names.add("Java");
+System.out.println(names.get(0).toUpperCase());
+```
+
+**Expected output:**
+
+```text
+JAVA
+```
+
+**Q2: How do you create a generic class?**
 
 ```java
 class Repository<T> {
     private T item;
 
-    void save(T item) {
-        this.item = item;
-    }
-
-    T find() {
-        return item;
-    }
+    void save(T item) { this.item = item; }
+    T find() { return item; }
 }
 
 Repository<String> repository = new Repository<>();
@@ -632,30 +999,56 @@ repository.save("Java");
 System.out.println(repository.find());
 ```
 
-Explanation: generics let a class operate on a type selected by the caller while preserving compile-time safety.
+**Expected output:**
+
+```text
+Java
+```
 
 ### `inheritance-and-polymorphism.md` — Inheritance and Polymorphism
 
+**Q1: What is inheritance?**
+
+**Answer:** Inheritance lets a subclass reuse and specialize behavior from a superclass.
+
 ```java
 class Animal {
-    String sound() {
-        return "Unknown";
-    }
+    String sound() { return "Unknown"; }
 }
 
 class Dog extends Animal {
-    String sound() {
-        return "Bark";
-    }
+    String sound() { return "Bark"; }
 }
 
+System.out.println(new Dog().sound());
+```
+
+**Expected output:**
+
+```text
+Bark
+```
+
+**Q2: What is polymorphism?**
+
+**Answer:** Polymorphism lets a superclass reference point to a subclass object and call overridden behavior.
+
+```java
 Animal animal = new Dog();
 System.out.println(animal.sound());
 ```
 
-Explanation: inheritance reuses behavior, while polymorphism lets a parent reference call subclass behavior at runtime.
+**Expected output:**
+
+```text
+Bark
+```
 
 ### `interfaces.md` — Interfaces
+
+**Q1: What is an interface?**
+
+**Answer:** An interface defines a contract that implementing classes must follow.
 
 ```java
 interface ReportExporter {
@@ -667,19 +1060,32 @@ class PdfExporter implements ReportExporter {
         System.out.println("Exporting PDF: " + reportName);
     }
 }
+
+ReportExporter exporter = new PdfExporter();
+exporter.export("Weekly Report");
 ```
 
-Explanation: interfaces define contracts. Implementing classes provide the concrete behavior.
+**Expected output:**
+
+```text
+Exporting PDF: Weekly Report
+```
+
+**Q2: Why program to an interface?**
+
+**Answer:** It reduces coupling. Code can depend on `ReportExporter` instead of a specific class such as `PdfExporter`.
 
 ### `object-methods.md` — Object Methods
+
+**Q1: Why override `toString()`?**
+
+**Answer:** To provide readable object output for logs and debugging.
 
 ```java
 class Account {
     private int id;
 
-    Account(int id) {
-        this.id = id;
-    }
+    Account(int id) { this.id = id; }
 
     public String toString() {
         return "Account{id=" + id + "}";
@@ -689,9 +1095,23 @@ class Account {
 System.out.println(new Account(101));
 ```
 
-Explanation: overriding `toString()` creates useful, readable output for logging and debugging.
+**Expected output:**
+
+```text
+Account{id=101}
+```
+
+**Q2: Why override `equals()` and `hashCode()` together?**
+
+**Answer:** Equal objects must return the same hash code for hash-based collections to work correctly.
+
+**Expected result:** Objects that are logically equal behave correctly in `HashSet` and as `HashMap` keys.
 
 ### `serialization.md` — Serialization
+
+**Q1: What is serialization?**
+
+**Answer:** Serialization converts object state into a byte stream so it can be saved or transferred.
 
 ```java
 import java.io.Serializable;
@@ -706,9 +1126,31 @@ class SessionData implements Serializable {
 }
 ```
 
-Explanation: serialization converts object state into a stream that can be stored or transferred.
+**Expected result:** `SessionData` can be serialized if its fields are serializable.
+
+**Q2: Why define `serialVersionUID`?**
+
+**Answer:** It helps Java verify class compatibility when deserializing stored objects.
 
 ### `threads-and-synchronization.md` — Threads and Synchronization
+
+**Q1: How do you create a thread with `Runnable`?**
+
+```java
+Runnable task = () -> System.out.println("Running task");
+Thread thread = new Thread(task);
+thread.start();
+```
+
+**Expected output:**
+
+```text
+Running task
+```
+
+**Q2: Why use `synchronized`?**
+
+**Answer:** To prevent multiple threads from changing shared state at the same time.
 
 ```java
 class Counter {
@@ -724,9 +1166,13 @@ class Counter {
 }
 ```
 
-Explanation: `synchronized` prevents multiple threads from modifying shared state at the same time.
+**Expected result:** Updates to `count` are protected from race conditions when all access is synchronized consistently.
 
 ### `wrapper-classes.md` — Wrapper Classes
+
+**Q1: What are wrapper classes?**
+
+**Answer:** Wrapper classes provide object versions of primitive types, such as `Integer` for `int` and `Double` for `double`.
 
 ```java
 int primitiveValue = 10;
@@ -736,32 +1182,27 @@ int unboxedValue = wrapperValue;       // unboxing
 System.out.println(Integer.max(primitiveValue, unboxedValue));
 ```
 
-Explanation: wrapper classes such as `Integer`, `Double`, and `Boolean` provide object versions of primitive values and utility methods.
+**Expected output:**
 
-## Interview Questions and PDF
+```text
+10
+```
 
-| Topic | File |
-|---|---|
-| Class and object basics | [basics-class-object.md](Java-Interview-Questions-And-Answers/basics-class-object.md) |
-| Abstract classes | [abstract-class.md](Java-Interview-Questions-And-Answers/abstract-class.md) |
-| Arrays | [arrays.md](Java-Interview-Questions-And-Answers/arrays.md) |
-| Constructors | [constructors.md](Java-Interview-Questions-And-Answers/constructors.md) |
-| Enums | [enum.md](Java-Interview-Questions-And-Answers/enum.md) |
-| File I/O | [file-io.md](Java-Interview-Questions-And-Answers/file-io.md) |
-| Generics | [generics.md](Java-Interview-Questions-And-Answers/generics.md) |
-| Inheritance and polymorphism | [inheritance-and-polymorphism.md](Java-Interview-Questions-And-Answers/inheritance-and-polymorphism.md) |
-| Interfaces | [interfaces.md](Java-Interview-Questions-And-Answers/interfaces.md) |
-| Object methods | [object-methods.md](Java-Interview-Questions-And-Answers/object-methods.md) |
-| Serialization | [serialization.md](Java-Interview-Questions-And-Answers/serialization.md) |
-| Threads and synchronization | [threads-and-synchronization.md](Java-Interview-Questions-And-Answers/threads-and-synchronization.md) |
-| Wrapper classes | [wrapper-classes.md](Java-Interview-Questions-And-Answers/wrapper-classes.md) |
+**Q2: Why are wrappers useful?**
 
-PDF reference:
+**Answer:** Collections and generic types work with objects, not primitives, so wrappers let primitive-style values be used in APIs such as `List<Integer>`.
 
-- [Java-Interview-Questions-And-Answers PDF - Java 8](_Java-Interview-Questions-And-Answers-(Java8).pdf)
+```java
+import java.util.ArrayList;
+import java.util.List;
 
-## PDF Text Alternative Notes
+List<Integer> numbers = new ArrayList<>();
+numbers.add(5);
+System.out.println(numbers.get(0));
+```
 
-- The PDF is linked above for direct viewing.
-- The PDF could not be converted to TXT through the available GitHub fetch method because the binary PDF content was unsupported/too large.
-- The `Java-Interview-Questions-And-Answers/` Markdown files are the easiest text-based alternative for browsing Java interview material in GitHub.
+**Expected output:**
+
+```text
+5
+```
