@@ -2,18 +2,19 @@
 
 **Written by Brian McCarthy**
 
-This repository is a hands-on Java programming guide with Java source examples, interview prep notes, and Java 8 study material.
+This repository is a hands-on Java programming guide with Java source examples, interview prep notes, section folders, ZIP-based course/source archives, and Java 8 study material.
 
 ## Table of Contents
 
 - [Project File Structure](#project-file-structure)
 - [Project Links](#project-links)
+- [Section Folder ZIP Notes](#section-folder-zip-notes)
 - [How to Use This Repository](#how-to-use-this-repository)
 - [Java Programming Tutorial Guide](#java-programming-tutorial-guide)
 - [Code Samples](#code-samples)
 - [Java Example Files and Explanations](#java-example-files-and-explanations)
 - [Interview Questions and PDF](#interview-questions-and-pdf)
-- [ZIP and PDF Text Notes](#zip-and-pdf-text-notes)
+- [PDF Text Alternative Notes](#pdf-text-alternative-notes)
 
 ## Project File Structure
 
@@ -21,6 +22,27 @@ This repository is a hands-on Java programming guide with Java source examples, 
 Java-Expert-Programming-Guide/
 ├── README.md
 ├── _Java-Interview-Questions-And-Answers-(Java8).pdf
+├── s01*/
+├── s02*/
+├── s03*/
+├── s04*/
+├── s05*/
+├── s06*/
+├── s07*/
+├── s08*/
+├── s09*/
+├── s10*/
+├── s11*/
+├── s12*/
+├── s13*/
+├── s14*/
+├── s15*/
+├── s16*/
+├── s17*/
+├── s18*/
+├── s19*/
+├── s20*/
+├── s21*/
 ├── Java-Interview-Questions-And-Answers/
 │   ├── basics-class-object.md
 │   ├── abstract-class.md
@@ -56,6 +78,8 @@ Java-Expert-Programming-Guide/
     └── varargs/
 ```
 
+> The `s01*` through `s21*` entries represent section folders whose names begin with `s01`, `s02`, `s03`, and so on through `s21`. These section folders may contain ZIP archives or course/source files for each section.
+
 ## Project Links
 
 | Resource | Link |
@@ -69,14 +93,65 @@ Java-Expert-Programming-Guide/
 | Generics examples | [Java-Example-Files/generics](Java-Example-Files/generics) |
 | Object method examples | [Java-Example-Files/object](Java-Example-Files/object) |
 
+## Section Folder ZIP Notes
+
+The repository includes section folders named from `s01*` through `s21*`. If those folders contain ZIP archives, extract each ZIP locally and commit the extracted `.java` files back into the matching section folder so they can be viewed directly in GitHub without downloading and unzipping archives.
+
+Recommended local extraction workflow:
+
+```bash
+git clone https://github.com/BrianGator/Java-Expert-Programming-Guide.git
+cd Java-Expert-Programming-Guide
+
+# macOS/Linux/Git Bash example: extract ZIP files inside section folders
+for dir in s{01..21}*; do
+  if [ -d "$dir" ]; then
+    find "$dir" -name "*.zip" -print0 | while IFS= read -r -d '' zipfile; do
+      target="${zipfile%.zip}"
+      mkdir -p "$target"
+      unzip -o "$zipfile" -d "$target"
+    done
+  fi
+done
+
+# Optional: keep only relevant Java/source files for easier GitHub browsing
+find s{01..21}* -type f \
+  ! -name "*.java" \
+  ! -name "*.md" \
+  ! -name "*.txt" \
+  ! -name "*.xml" \
+  ! -name "*.properties" \
+  ! -name "pom.xml" \
+  ! -name "build.gradle" \
+  -print
+
+git status
+git add s01* s02* s03* s04* s05* s06* s07* s08* s09* s10* s11* s12* s13* s14* s15* s16* s17* s18* s19* s20* s21*
+git commit -m "Extract Java section source files"
+git push
+```
+
+PowerShell extraction workflow:
+
+```powershell
+Get-ChildItem -Directory -Filter "s*" | Where-Object { $_.Name -match '^s(0[1-9]|1[0-9]|2[0-1])' } | ForEach-Object {
+    Get-ChildItem $_.FullName -Filter "*.zip" -Recurse | ForEach-Object {
+        $target = Join-Path $_.DirectoryName $_.BaseName
+        New-Item -ItemType Directory -Force -Path $target | Out-Null
+        Expand-Archive -Path $_.FullName -DestinationPath $target -Force
+    }
+}
+```
+
 ## How to Use This Repository
 
 1. Clone the repository.
 2. Open it in IntelliJ IDEA, Eclipse, VS Code, or another Java IDE.
 3. Browse `Java-Example-Files/` by topic.
-4. Open one `.java` file at a time.
-5. Read the matching topic note in `Java-Interview-Questions-And-Answers/`.
-6. Use the Java 8 PDF for interview review.
+4. Browse `s01*` through `s21*` for section-specific examples and extracted source files.
+5. Open one `.java` file at a time.
+6. Read the matching topic note in `Java-Interview-Questions-And-Answers/`.
+7. Use the Java 8 PDF for interview review.
 
 ```bash
 git clone https://github.com/BrianGator/Java-Expert-Programming-Guide.git
@@ -287,8 +362,8 @@ PDF reference:
 
 - [Java-Interview-Questions-And-Answers PDF - Java 8](_Java-Interview-Questions-And-Answers-(Java8).pdf)
 
-## ZIP and PDF Text Notes
+## PDF Text Alternative Notes
 
-- I did not find repository paths matching `s01`, `s21`, or `.zip` during the crawl, so there were no visible `s01-s21` ZIP files available to extract through the GitHub connector.
 - The PDF is linked above for direct viewing.
-- The PDF could not be converted to TXT through the available GitHub fetch method because the binary PDF content was unsupported/too large. The `Java-Interview-Questions-And-Answers/` Markdown files are the easiest text-based alternative for perusal.
+- The PDF could not be converted to TXT through the available GitHub fetch method because the binary PDF content was unsupported/too large.
+- The `Java-Interview-Questions-And-Answers/` Markdown files are the easiest text-based alternative for browsing Java interview material in GitHub.
