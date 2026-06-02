@@ -1,7 +1,5 @@
 # Java Expert Programming Tutorial Guide
 
-**Written by Brian McCarthy**
-
 This repository is a hands-on Java programming guide with Java source examples, interview prep notes, section folders, ZIP-based course/source archives, and Java 8 study material.
 
 ## Table of Contents
