@@ -22,27 +22,6 @@ This repository is a hands-on Java programming guide with Java source examples, 
 Java-Expert-Programming-Guide/
 ├── README.md
 ├── _Java-Interview-Questions-And-Answers-(Java8).pdf
-├── s01*/
-├── s02*/
-├── s03*/
-├── s04*/
-├── s05*/
-├── s06*/
-├── s07*/
-├── s08*/
-├── s09*/
-├── s10*/
-├── s11*/
-├── s12*/
-├── s13*/
-├── s14*/
-├── s15*/
-├── s16*/
-├── s17*/
-├── s18*/
-├── s19*/
-├── s20*/
-├── s21*/
 ├── Java-Interview-Questions-And-Answers/
 │   ├── basics-class-object.md
 │   ├── abstract-class.md
@@ -78,8 +57,6 @@ Java-Expert-Programming-Guide/
     └── varargs/
 ```
 
-> The `s01*` through `s21*` entries represent section folders whose names begin with `s01`, `s02`, `s03`, and so on through `s21`. These section folders may contain ZIP archives or course/source files for each section.
-
 ## Project Links
 
 | Resource | Link |
@@ -95,7 +72,7 @@ Java-Expert-Programming-Guide/
 
 ## Section Folder ZIP Notes
 
-The repository includes section folders named from `s01*` through `s21*`. If those folders contain ZIP archives, extract each ZIP locally and commit the extracted `.java` files back into the matching section folder so they can be viewed directly in GitHub without downloading and unzipping archives.
+The project contains section folders whose names begin with `s01`, `s02`, `s03`, and continue through the later course sections. If those folders contain ZIP archives, extract each ZIP locally and commit the extracted `.java` files back into the matching section folder so they can be viewed directly in GitHub without downloading and unzipping archives.
 
 Recommended local extraction workflow:
 
@@ -114,19 +91,8 @@ for dir in s{01..21}*; do
   fi
 done
 
-# Optional: keep only relevant Java/source files for easier GitHub browsing
-find s{01..21}* -type f \
-  ! -name "*.java" \
-  ! -name "*.md" \
-  ! -name "*.txt" \
-  ! -name "*.xml" \
-  ! -name "*.properties" \
-  ! -name "pom.xml" \
-  ! -name "build.gradle" \
-  -print
-
 git status
-git add s01* s02* s03* s04* s05* s06* s07* s08* s09* s10* s11* s12* s13* s14* s15* s16* s17* s18* s19* s20* s21*
+git add .
 git commit -m "Extract Java section source files"
 git push
 ```
@@ -148,7 +114,7 @@ Get-ChildItem -Directory -Filter "s*" | Where-Object { $_.Name -match '^s(0[1-9]
 1. Clone the repository.
 2. Open it in IntelliJ IDEA, Eclipse, VS Code, or another Java IDE.
 3. Browse `Java-Example-Files/` by topic.
-4. Browse `s01*` through `s21*` for section-specific examples and extracted source files.
+4. Browse the section folders for section-specific examples and extracted source files.
 5. Open one `.java` file at a time.
 6. Read the matching topic note in `Java-Interview-Questions-And-Answers/`.
 7. Use the Java 8 PDF for interview review.
@@ -282,6 +248,61 @@ Explanation: the first loop uses a counter. The second loop is an enhanced `for`
 
 Source: [Java-Example-Files/flow/ForLoopExample.java](Java-Example-Files/flow/ForLoopExample.java)
 
+### Array Example
+
+```java
+int[] scores = { 95, 88, 76, 100 };
+int total = 0;
+
+for (int score : scores) {
+    total += score;
+}
+
+double average = (double) total / scores.length;
+System.out.println("Average score: " + average);
+```
+
+Explanation: arrays store fixed-size values of the same type. This example loops through all scores, calculates a total, and computes an average.
+
+Source: [Java-Example-Files/arrays/ArrayExamples.java](Java-Example-Files/arrays/ArrayExamples.java)
+
+### String Example
+
+```java
+String course = "Java Expert Programming";
+
+System.out.println(course.length());
+System.out.println(course.toUpperCase());
+System.out.println(course.contains("Java"));
+System.out.println(course.substring(0, 4));
+```
+
+Explanation: Java `String` objects are immutable text values. Common operations include length checks, case conversion, searching, and substring extraction.
+
+Source: [Java-Example-Files/string/StringExamples.java](Java-Example-Files/string/StringExamples.java)
+
+### Encapsulation Example
+
+```java
+class BankAccount {
+    private double balance;
+
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+        }
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+}
+```
+
+Explanation: encapsulation keeps fields private and exposes controlled behavior through public methods. This protects object state from invalid changes.
+
+Source: [Java-Example-Files/oops/encapsulation/EncapsulationExample.java](Java-Example-Files/oops/encapsulation/EncapsulationExample.java)
+
 ### Inheritance Example
 
 ```java
@@ -303,6 +324,120 @@ Explanation: `Dog` extends `Animal` and implements the abstract behavior. The su
 
 Source: [Java-Example-Files/oops/inheritance/InheritanceExamples.java](Java-Example-Files/oops/inheritance/InheritanceExamples.java)
 
+### Interface Example
+
+```java
+interface Flyable {
+    void fly();
+}
+
+class Bird implements Flyable {
+    public void fly() {
+        System.out.println("Bird is flying");
+    }
+}
+
+Flyable flyer = new Bird();
+flyer.fly();
+```
+
+Explanation: an interface defines a contract. Any class that implements the interface must provide the required behavior.
+
+Source: [Java-Example-Files/oops/interfaces/Flyable.java](Java-Example-Files/oops/interfaces/Flyable.java)
+
+### Enum Example
+
+```java
+enum Difficulty {
+    EASY,
+    MEDIUM,
+    HARD
+}
+
+Difficulty level = Difficulty.MEDIUM;
+
+switch (level) {
+    case EASY:
+        System.out.println("Beginner level");
+        break;
+    case MEDIUM:
+        System.out.println("Intermediate level");
+        break;
+    case HARD:
+        System.out.println("Advanced level");
+        break;
+}
+```
+
+Explanation: enums represent a fixed set of constants. They are safer and clearer than using raw strings or magic numbers.
+
+Source: [Java-Example-Files/enums/Enum.java](Java-Example-Files/enums/Enum.java)
+
+### Generics Example
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+List<String> names = new ArrayList<>();
+names.add("Brian");
+names.add("Java");
+
+for (String name : names) {
+    System.out.println(name.toUpperCase());
+}
+```
+
+Explanation: generics make collections type-safe. `List<String>` only accepts `String` values, which reduces runtime casting errors.
+
+Source: [Java-Example-Files/generics/GenericsExamples.java](Java-Example-Files/generics/GenericsExamples.java)
+
+### equals and hashCode Example
+
+```java
+class User {
+    private int id;
+
+    User(int id) {
+        this.id = id;
+    }
+
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof User)) return false;
+        User other = (User) obj;
+        return this.id == other.id;
+    }
+
+    public int hashCode() {
+        return Integer.hashCode(id);
+    }
+}
+```
+
+Explanation: `equals()` controls logical equality, while `hashCode()` supports hash-based collections such as `HashMap` and `HashSet`.
+
+Source: [Java-Example-Files/object/EqualsHashCodeExamples.java](Java-Example-Files/object/EqualsHashCodeExamples.java)
+
+### Varargs Example
+
+```java
+public static int sum(int... numbers) {
+    int total = 0;
+    for (int number : numbers) {
+        total += number;
+    }
+    return total;
+}
+
+System.out.println(sum(1, 2, 3));
+System.out.println(sum(10, 20, 30, 40));
+```
+
+Explanation: varargs allow a method to accept zero or more values of the same type using `...` syntax.
+
+Source: [Java-Example-Files/varargs/VariableArgumentExamples.java](Java-Example-Files/varargs/VariableArgumentExamples.java)
+
 ### Thread Example
 
 ```java
@@ -319,6 +454,60 @@ thread.start();
 Explanation: extending `Thread` and calling `start()` runs the `run()` method on a separate execution path.
 
 Source: [Java-Example-Files/threads/ThreadExamples.java](Java-Example-Files/threads/ThreadExamples.java)
+
+### Runnable Example
+
+```java
+Runnable task = new Runnable() {
+    public void run() {
+        System.out.println("Running task in a separate thread");
+    }
+};
+
+Thread thread = new Thread(task);
+thread.start();
+```
+
+Explanation: implementing `Runnable` separates the task from the thread object and is often more flexible than extending `Thread`.
+
+Source: [Java-Example-Files/threads/ThreadExamples.java](Java-Example-Files/threads/ThreadExamples.java)
+
+### Lambda Expression Example
+
+```java
+Runnable task = () -> System.out.println("Running with a lambda");
+Thread thread = new Thread(task);
+thread.start();
+```
+
+Explanation: Java 8 lambdas make functional-interface implementations shorter and easier to read.
+
+Source: [Java-Example-Files/LambdaExpressionsTest.java](Java-Example-Files/LambdaExpressionsTest.java)
+
+### Console Output Formatting Example
+
+```java
+String name = "Brian";
+int score = 95;
+
+System.out.printf("Student: %s | Score: %d%n", name, score);
+```
+
+Explanation: `printf` formats output using placeholders such as `%s` for strings and `%d` for integers.
+
+Source: [Java-Example-Files/others/PrintfExamples.java](Java-Example-Files/others/PrintfExamples.java)
+
+### Assertion Example
+
+```java
+int age = 25;
+assert age >= 0 : "Age cannot be negative";
+System.out.println("Valid age: " + age);
+```
+
+Explanation: assertions document assumptions and can help catch programming errors during development and testing.
+
+Source: [Java-Example-Files/others/assertexample/AssertExamples.java](Java-Example-Files/others/assertexample/AssertExamples.java)
 
 ## Java Example Files and Explanations
 
